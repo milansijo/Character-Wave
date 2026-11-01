@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Character</title>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; background: #0f1020; color: #fff; }
+    model-viewer { width: 100vw; height: 80vh; background: radial-gradient(#2a2d5a, #0f1020); }
+    .bar { display: flex; gap: 8px; justify-content: center; padding: 16px; }
+    button { padding: 10px 18px; border-radius: 999px; border: 0; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <model-viewer id="mv"
+    src="character.glb"
+    alt="My AI-built game character"
+    camera-controls auto-rotate
+    autoplay animation-name="Idle.001"
+    ar ar-modes="webxr scene-viewer quick-look"
+    shadow-intensity="1" exposure="1">
+  </model-viewer>
+ 
+  <div class="bar">
+    <button onclick="play('Idle.001')">Idle</button>
+    <button onclick="play('Wave.001')">Wave</button>
+  </div>
+ 
+  <script>
+    const mv = document.getElementById('mv');
+    function play(name) { mv.animationName = name; mv.play(); }
+    mv.addEventListener('load', () => console.log('Animations:', mv.availableAnimations));
+  </script>
+</body>
+</html>
